@@ -1,5 +1,53 @@
 import { Card, Image, Text, Button, Badge, Alert } from "@mantine/core";
 
+const Services = () => {
+  return (
+    <div className="flex gap-6">
+      <div className="w-3/5 grid grid-cols-1 md:grid-cols-1 gap-6">
+        <Alert
+          variant="light"
+          color="blue"
+          title="Help me find and opportunity"
+        ></Alert>
+        {volunteerData.map((service) => (
+          <Card
+            key={service.id}
+            style={{ flexDirection: "row", padding: "0px" }}
+            className="border shadow-md"
+          >
+            <div className="w-1/3">
+              <Image src={service.imageUrl} alt={service.serviceName} />
+            </div>
+            <div className=" w-2/3 flex flex-col justify-center ml-4">
+              <h2 className="text-lg font-bold">{service.serviceName}</h2>
+              <p className="text-sm text-gray-500">{service.companyName}</p>
+              <p className="text-sm text-blue-500">{service.address}</p>
+              <p className="text-sm text-gray-500">{service.date}</p>
+              <div className="mt-2">
+                {service.keywords.map((keyword, index) => (
+                  <Badge key={index} className="mr-2 mb-2">
+                    {keyword}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div className="">
+              <Button className="m-4 px-5" radius={100}>
+                View Details
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+      <div>
+        <Image src="/map.png" alt="map" />
+      </div>
+    </div>
+  );
+};
+
+export default Services;
+
 const volunteerData = [
   {
     id: 1,
@@ -38,43 +86,3 @@ const volunteerData = [
     keywords: ["Environment", "Tree Planting", "Green"],
   },
 ];
-
-const Services = () => {
-  return (
-    <div className="w-3/5 grid grid-cols-1 md:grid-cols-1 gap-6">
-      <Alert variant="light" color="blue" title="Help me find and opportunity">
-      </Alert>
-      {volunteerData.map((service) => (
-        <Card
-          key={service.id}
-          style={{ flexDirection: "row", padding: "0px" }}
-          className="border items-center shadow-md"
-        >
-          <div className="w-1/3">
-            <Image src={service.imageUrl} alt={service.serviceName} />
-          </div>
-          <div className=" w-2/3 ml-4">
-            <h2 className="text-lg font-bold">{service.serviceName}</h2>
-            <p className="text-sm text-gray-500">{service.companyName}</p>
-            <p className="text-sm text-blue-500">{service.address}</p>
-            <p className="text-sm text-gray-500">{service.date}</p>
-            <div className="mt-2">
-              {service.keywords.map((keyword, index) => (
-                <Badge key={index} className="mr-2 mb-2">
-                  {keyword}
-                </Badge>
-              ))}
-            </div>
-          </div>
-          <div className="">
-            <Button className="m-4 px-5" radius={100}>
-              View Details
-            </Button>
-          </div>
-        </Card>
-      ))}
-    </div>
-  );
-};
-
-export default Services;
