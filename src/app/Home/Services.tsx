@@ -16,7 +16,7 @@ const Services = () => {
             className="border shadow-md"
           >
             <div className="w-1/3">
-              <Image src={service.imageUrl} alt={service.serviceName} />
+              <Image className="h-full" src={service.imageUrl} alt={service.serviceName} />
             </div>
             <div className=" w-2/3 flex flex-col justify-center ml-4">
               <h2 className="text-lg font-bold">{service.serviceName}</h2>
@@ -51,7 +51,7 @@ export default Services;
 const volunteerData = [
   {
     id: 1,
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "/1.png",
     serviceName: "Help us cleanup our office",
     companyName: "Eco Volunteers",
     address: "123 Greenway Blvd, Springfield",
@@ -60,7 +60,7 @@ const volunteerData = [
   },
   {
     id: 2,
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "/2.png",
     serviceName: "Food sorting and packing",
     companyName: "Helping Hands",
     address: "456 Charity Ave, Metropolis",
@@ -69,7 +69,7 @@ const volunteerData = [
   },
   {
     id: 3,
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "/3.png",
     serviceName: "Day camp counselors",
     companyName: "Animal Friends",
     address: "789 Pet Lane, Gotham",
@@ -78,7 +78,7 @@ const volunteerData = [
   },
   {
     id: 4,
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "/4.png",
     serviceName: "Voater registration volunteer",
     companyName: "Green Earth",
     address: "101 Nature Path, Smallville",
