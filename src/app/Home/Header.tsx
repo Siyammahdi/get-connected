@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Avatar, Button, Card, Image, Text } from "@mantine/core";
+import { Avatar, Button, Image } from "@mantine/core";
 
 const Header = () => {
   return (
