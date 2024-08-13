@@ -19,7 +19,9 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className='max-w-7xl mx-auto'>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+            {children}
+        </MantineProvider>
       </body>
     </html>
   );

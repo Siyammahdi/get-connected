@@ -1,7 +1,7 @@
 import { Select } from "@mantine/core";
 import React from "react";
 
-const Selectors = () => {
+const SearchFilters = () => {
   return (
     <div>
       <div className="flex gap-3 w-2/3">
@@ -38,4 +38,4 @@ const Selectors = () => {
   );
 };
 
-export default Selectors;
+export default SearchFilters;
