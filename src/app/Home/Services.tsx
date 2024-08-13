@@ -1,4 +1,4 @@
-import { Card, Image, Text, Button, Badge, Alert } from "@mantine/core";
+import { Card, Image, Text, Button, Alert } from "@mantine/core";
 import { BsCalendar2Date, BsFillCalendar2DateFill } from "react-icons/bs";
 import { TiLocation } from "react-icons/ti";
 import { FaTree, FaUtensils, FaChild, FaCheck, FaHammer, FaBriefcase, FaClock, FaCalendarAlt, FaGlobe, FaHandshake, FaRegBuilding, FaFingerprint } from 'react-icons/fa';
@@ -8,76 +8,17 @@ import { PiUsersThree } from "react-icons/pi";
 import { LuClipboard, LuSun } from "react-icons/lu";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-const Services = () => {
-  return (
-    <div className="flex gap-6">
-      <div className="w-3/5 grid grid-cols-1 md:grid-cols-1 gap-6">
-        <Alert
-          variant="light"
-          color="blue"
-          title="Help me find and opportunity"
-        ></Alert>
-        {volunteerData.map((service) => (
-          <Card
-            key={service.id}
-            style={{ flexDirection: "row", padding: "0px" }}
-            className="border shadow-md"
-          >
-            <div className="w-1/3">
-              <Image
-                className="h-full"
-                src={service.imageUrl}
-                alt={service.serviceName}
-              />
-            </div>
-            <div className=" w-2/3 flex flex-col justify-center ml-4 text-gray-500">
-              <div className="py-3">
-                <h2 className="text-2xl font-semibold">
-                  {service.serviceName}
-                </h2>
-                <p className="text-base font-semibold">
-                  {service.companyName}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-xs text-blue-600 flex items-center gap-2 font-semibold">
-                  <TiLocation /> {service.address}
-                </p>
-                <p className="text-xs  flex items-center gap-2 font-semibold">
-                  {" "}
-                  <BsFillCalendar2DateFill />
-                  {service.date}
-                </p>
-              </div>
-              <div className="my-2 grid grid-cols-3">
-              {service.keywords.map((keyword, index) => {
-                const Icon = keywordIcons[keyword] || FaCheck; // Default icon if no match
-                return (
-                  <p key={index} className="mr-2 text-xs font-semibold flex items-center">
-                    <Icon className="mr-1" /> {keyword}
-                  </p>
-                );
-              })}
-              </div>
-            </div>
-            <div className="">
-              <Button className="m-4 px-5" radius={100}>
-                View Details
-              </Button>
-            </div>
-          </Card>
-        ))}
-      </div>
-      <div>
-        <Image src="/map.png" alt="map" />
-      </div>
-    </div>
-  );
-};
+interface VolunteerService {
+  id: number;
+  imageUrl: string;
+  serviceName: string;
+  companyName: string;
+  address: string;
+  date: string;
+  keywords: string[];
+}
 
-export default Services;
-
-const volunteerData = [
+const volunteerData: VolunteerService[] = [
   {
     id: 1,
     imageUrl: "/1.png",
@@ -116,8 +57,7 @@ const volunteerData = [
   },
 ];
 
-
-const keywordIcons = {
+const keywordIcons: { [key: string]: React.ComponentType } = {
   'Physical labour': FaRegHand,
   'Community': FiGlobe,
   'Family friendly': PiUsersThree,
@@ -135,3 +75,71 @@ const keywordIcons = {
   'Advocacy': FaGlobe,
   'Political': FaHandshake,
 };
+
+const Services = () => {
+  return (
+    <div className="flex gap-6">
+      <div className="w-4/6 grid grid-cols-1 md:grid-cols-1 gap-6">
+        <Alert
+          variant="light"
+          color="blue"
+          title="Help me find and opportunity"
+        ></Alert>
+        {volunteerData.map((service) => (
+          <Card
+            key={service.id}
+            style={{ flexDirection: "row", padding: "0px" }}
+            className="border shadow-md"
+          >
+            <div className="w-1/3">
+              <Image
+                className="h-full"
+                src={service.imageUrl}
+                alt={service.serviceName}
+              />
+            </div>
+            <div className=" w-2/3 flex flex-col justify-center ml-4 text-gray-500">
+              <div className="py-3">
+                <h2 className="text-2xl font-semibold">
+                  {service.serviceName}
+                </h2>
+                <p className="text-base font-semibold">
+                  {service.companyName}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-blue-600 flex items-center gap-2 font-semibold">
+                  <TiLocation /> {service.address}
+                </p>
+                <p className="text-xs  flex items-center gap-2 font-semibold">
+                  <BsFillCalendar2DateFill />
+                  {service.date}
+                </p>
+              </div>
+              <div className="my-2 grid grid-cols-3">
+                {service.keywords.map((keyword, index) => {
+                  const Icon = keywordIcons[keyword] || FaCheck; // Default icon if no match
+                  return (
+                    <p key={index} className="text-xs font-semibold flex gap-1 items-center">
+                      <Icon/> {keyword}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="">
+              <Button className="m-4 px-5" radius={100}>
+                View Details
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+      <div>
+        <Image src="/map.png" alt="map" />
+      </div>
+    </div>
+  );
+};
+
+export default Services;
